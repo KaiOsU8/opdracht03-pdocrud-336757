@@ -12,32 +12,26 @@
     <h1>PDO CRUD</h1>
 
     <form action="create.php" method="post">
-        <label for="firstname">Voornaam:</label><br>
-        <input type="text" name="firstname" id="firstname"><br>
+        <label for="achtbaan">Naam Achtbaan:</label><br>
+        <input type="text" name="achtbaan" id="achtbaan"><br>
 
-        <label for="infix">Tussenvoegsel:</label><br>
-        <input type="text" name="infix" id="infix"><br>
+        <label for="pretpark">Naam Pretpark:</label><br>
+        <input type="text" name="pretpark" id="pretpark"><br>
 
-        <label for="lastname">Achternaam:</label><br>
-        <input type="text" name="lastname" id="lastname"><br>
+        <label for="land">Naam Land:</label><br>
+        <input type="text" name="land" id="land"><br>
 
-        <label for="number">Telefoonnummer:</label><br>
-        <input type="tel" name="number" id="number"><br>
+        <label for="snelheid">Topsnelheid (km/u):</label><br>
+        <input type="number" name="snelheid" id="snelheid"><br>
 
-        <label for="straatnaam">Straatnaam:</label><br>
-        <input type="text" name="straatnaam" id="straatnaam"><br>
+        <label for="hoogte">Hoogte (m):</label><br>
+        <input type="number" name="hoogte" id="hoogte"><br>
 
-        <label for="huisnummer">Huisnummer:</label><br>
-        <input type="text" name="huisnummer" id="huisnummer"><br>
+        <label for="opendate">Datum eerste opening:</label><br>
+        <input type="date" name="opendate" id="opendate"><br>
 
-        <label for="woonplaats">Woonplaats:</label><br>
-        <input type="text" name="woonplaats" id="woonplaats"><br>
-
-        <label for="postcode">Postcode:</label><br>
-        <input type="text" name="postcode" id="postcode"><br>
-
-        <label for="landnaam">Landnaam:</label><br>
-        <input type="text" name="landnaam" id="landnaam"><br><br>
+        <label for="cijfer">Cijfer voor achtbaan:</label><br>
+        <input type="range" value="5.5" min="1" max="10" step="0.1" name="cijfer" id="cijfer"><br><br>
 
         <input type="submit" value="Verstuur">
     </form>

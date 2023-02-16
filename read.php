@@ -22,16 +22,14 @@ try {
  */
 
 $sql = "SELECT Id
-              ,Voornaam
-              ,Tussenvoegsel
-              ,Achternaam
-              ,Telefoonnummer
-              ,Straatnaam
-              ,Huisnummer
-              ,Woonplaats
-              ,Postcode
-              ,Landnaam
-        FROM Persoon";
+              ,Achtbaan
+              ,Pretpark
+              ,Land
+              ,Topsnelheid
+              ,Hoogte
+              ,Datum
+              ,Cijfer
+        FROM Achtbaan";
 
 //Bereid de de query voor met de method prepare
 $statement = $pdo->prepare($sql);
@@ -47,15 +45,13 @@ $tableRows = "";
 
 foreach($result as $info) {
     $tableRows .= "<tr>
-                        <td>$info->Voornaam</td>
-                        <td>$info->Tussenvoegsel</td>
-                        <td>$info->Achternaam</td>
-                        <td>$info->Telefoonnummer</td>
-                        <td>$info->Straatnaam</td>
-                        <td>$info->Huisnummer</td>
-                        <td>$info->Woonplaats</td>
-                        <td>$info->Postcode</td>
-                        <td>$info->Landnaam</td>
+                        <td>$info->Achtbaan</td>
+                        <td>$info->Pretpark</td>
+                        <td>$info->Land</td>
+                        <td>$info->Topsnelheid</td>
+                        <td>$info->Hoogte</td>
+                        <td>$info->Datum</td>
+                        <td>$info->Cijfer</td>
                         <td>
                             <a href='delete.php?Id=$info->Id'>
                                 <img src='img/b_drop.png' alt='cross'>
@@ -69,7 +65,7 @@ foreach($result as $info) {
                    </tr>";
 }
 ?>
-<h3>Persoonsgegevens</h3>
+<h3>Achtbaan-Info</h3>
 
 <a href="index.php">
     <input type="button" value="Maak een nieuw record">
@@ -78,15 +74,13 @@ foreach($result as $info) {
 <br><br>
 <table border='1'>
     <thead>
-        <th>Voornaam</th>
-        <th>Tussenvoegsel</th>
-        <th>Achternaam</th>
-        <th>Telefoonnummer</th>
-        <th>Straatnaam</th>
-        <th>Huisnummer</th>
-        <th>Woonplaats</th>
-        <th>Postcode</th>
-        <th>Landnaam</th>
+        <th>Achtbaan</th>
+        <th>Pretpark</th>
+        <th>Land</th>
+        <th>Topsnelheid</th>
+        <th>Hoogte</th>
+        <th>Datum</th>
+        <th>Cijfer</th>
         <th></th>
         <th></th>
     </thead>

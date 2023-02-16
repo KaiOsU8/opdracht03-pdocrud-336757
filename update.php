@@ -21,16 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // echo "skdf";exit();
     try {
         // Maak een update query voor het updaten van een record
-        $sql = "UPDATE Persoon
-                SET Voornaam = :Voornaam,
-                    Tussenvoegsel = :Tussenvoegsel,
-                    Achternaam = :Achternaam,
-                    Telefoonnummer = :Telefoonnummer,
-                    Straatnaam = :Straatnaam,
-                    Huisnummer = :Huisnummer,
-                    Woonplaats = :Woonplaats,
-                    Postcode = :Postcode,
-                    Landnaam = :Landnaam
+        $sql = "UPDATE Achtbaan
+                SET Achtbaan = :Achtbaan,
+                    Pretpark = :Pretpark,
+                    Land = :Land,
+                    Topsnelheid = :Topsnelheid,
+                    Hoogte = :Hoogte,
+                    Datum = :Datum,
+                    Cijfer = :Cijfer
                 WHERE Id = :Id";
 
         // Roep de prepare-method aan van het PDO-object $pdo
@@ -38,15 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // We moeten de placeholders een waarde geven in de sql-query
         $statement->bindValue(':Id', $_POST['Id'], PDO::PARAM_INT);
-        $statement->bindValue(':Voornaam', $_POST['firstname'], PDO::PARAM_STR);
-        $statement->bindValue(':Tussenvoegsel', $_POST['infix'], PDO::PARAM_STR);
-        $statement->bindValue(':Achternaam', $_POST['lastname'], PDO::PARAM_STR);
-        $statement->bindValue(':Telefoonnummer', $_POST['number'], PDO::PARAM_STR);
-        $statement->bindValue(':Straatnaam', $_POST['straatnaam'], PDO::PARAM_STR);
-        $statement->bindValue(':Huisnummer', $_POST['huisnummer'], PDO::PARAM_STR);
-        $statement->bindValue(':Woonplaats', $_POST['woonplaats'], PDO::PARAM_STR);
-        $statement->bindValue(':Postcode', $_POST['postcode'], PDO::PARAM_STR);
-        $statement->bindValue(':Landnaam', $_POST['landnaam'], PDO::PARAM_STR);
+        $statement->bindValue(':Achtbaan', $_POST['achtbaan'], PDO::PARAM_STR);
+        $statement->bindValue(':Pretpark', $_POST['pretpark'], PDO::PARAM_STR);
+        $statement->bindValue(':Land', $_POST['land'], PDO::PARAM_STR);
+        $statement->bindValue(':Topsnelheid', $_POST['snelheid'], PDO::PARAM_STR);
+        $statement->bindValue(':Hoogte', $_POST['hoogte'], PDO::PARAM_STR);
+        $statement->bindValue(':Datum', $_POST['opendate'], PDO::PARAM_STR);
+        $statement->bindValue(':Cijfer', $_POST['cijfer'], PDO::PARAM_STR);
 
         // We gaan de query uitvoeren op de mysql-server
         $statement->execute();
@@ -62,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Maak een select-query
-$sql = "SELECT * FROM Persoon 
+$sql = "SELECT * FROM Achtbaan
         WHERE Id = :Id";
 
 // Voorbereiden van de query
@@ -92,32 +88,26 @@ $result = $statement->fetch(PDO::FETCH_OBJ);
 
     <form action="update.php" method="post">
 
-        <label for="firstname">Voornaam:</label><br>
-        <input type="text" name="firstname" id="firstname" value="<?php echo $result->Voornaam; ?>"><br><br>
+        <label for="achtbaan">Naam Achtbaan:</label><br>
+        <input type="text" name="achtbaan" id="achtbaan" value="<?php echo $result->Achtbaan; ?>"><br><br>
 
-        <label for="infix">Tussenvoegsel:</label><br>
-        <input type="text" name="infix" id="infix" value="<?php echo $result->Tussenvoegsel; ?>"><br><br>
+        <label for="pretpark">Naam Pretpark:</label><br>
+        <input type="text" name="pretpark" id="pretpark" value="<?php echo $result->Pretpark; ?>"><br><br>
 
-        <label for="lastname">Achternaam:</label><br>
-        <input type="text" name="lastname" id="lastname" value="<?php echo $result->Achternaam; ?>"><br><br>
+        <label for="land">Naam Land:</label><br>
+        <input type="text" name="land" id="land" value="<?php echo $result->Land; ?>"><br><br>
 
-        <label for="number">Telefoonnummer:</label><br>
-        <input type="tel" name="number" id="number" value="<?php echo $result->Telefoonnummer; ?>"><br><br>
+        <label for="snelheid">Topsnelheid (km/u):</label><br>
+        <input type="number" name="snelheid" id="snelheid" value="<?php echo $result->Topsnelheid; ?>"><br><br>
 
-        <label for="straatnaam">Straatnaam:</label><br>
-        <input type="text" name="straatnaam" id="straatnaam" value="<?php echo $result->Straatnaam; ?>"><br><br>
+        <label for="hoogte">Hoogte (m):</label><br>
+        <input type="number" name="hoogte" id="hoogte" value="<?php echo $result->Hoogte; ?>"><br><br>
 
-        <label for="huisnummer">Huisnummer:</label><br>
-        <input type="text" name="huisnummer" id="huisnummer" value="<?php echo $result->Huisnummer; ?>"><br><br>
+        <label for="opendate">Datum eerste opening:</label><br>
+        <input type="date" name="opendate" id="opendate" value="<?php echo $result->Datum; ?>"><br><br>
         
-        <label for="woonplaats">Woonplaats:</label><br>
-        <input type="text" name="woonplaats" id="woonplaats" value="<?php echo $result->Woonplaats; ?>"><br><br>
-        
-        <label for="postcode">Postcode:</label><br>
-        <input type="text" name="postcode" id="postcode" value="<?php echo $result->Postcode; ?>"><br><br>
-        
-        <label for="landnaam">Landnaam:</label><br>
-        <input type="text" name="landnaam" id="landnaam" value="<?php echo $result->Landnaam; ?>"><br><br>
+        <label for="cijfer">Cijfer voor achtbaan:</label><br>
+        <input type="range" name="cijfer" id="cijfer" value="<?php echo $result->Cijfer; ?>"><br><br>
 
         <input type="hidden" name="Id" value="<?php echo $result->Id; ?>">
 
