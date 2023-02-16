@@ -14,37 +14,31 @@ try {
     echo "Systeemmelding: " . $e->getMessage();
 }
 // Maak de sql query voor het inserten van een record
-$sql = "INSERT INTO Persoon (Id
-                            ,Voornaam
-                            ,Tussenvoegsel
-                            ,Achternaam
-                            ,Telefoonnummer
-                            ,Straatnaam
-                            ,Huisnummer
-                            ,Woonplaats
-                            ,Postcode
-                            ,Landnaam)
+$sql = "INSERT INTO Achtbaan (Id
+                            ,Achtbaan
+                            ,Pretpark
+                            ,Land
+                            ,Topsnelheid
+                            ,Hoogte
+                            ,Datum
+                            ,Cijfer)
         VALUES              (NULL
-                            ,:firstname
-                            ,:infix
-                            ,:lastname
-                            ,:number
-                            ,:straatnaam
-                            ,:huisnummer
-                            ,:woonplaats
-                            ,:postcode
-                            ,:landnaam);";
+                            ,:achtbaan
+                            ,:pretpark
+                            ,:land
+                            ,:snelheid
+                            ,:hoogte
+                            ,:opendate
+                            ,:cijfer);";
 // Maak de query gereed met de prepare-method van het $pdo-object
 $statement = $pdo->prepare($sql);
-$statement->bindValue(':firstname', $_POST['firstname'], PDO::PARAM_STR);
-$statement->bindValue(':infix', $_POST['infix'], PDO::PARAM_STR);
-$statement->bindValue(':lastname', $_POST['lastname'], PDO::PARAM_STR);
-$statement->bindValue(':number', $_POST['number'], PDO::PARAM_STR);
-$statement->bindValue(':straatnaam', $_POST['straatnaam'], PDO::PARAM_STR);
-$statement->bindValue(':huisnummer', $_POST['huisnummer'], PDO::PARAM_STR);
-$statement->bindValue(':woonplaats', $_POST['woonplaats'], PDO::PARAM_STR);
-$statement->bindValue(':postcode', $_POST['postcode'], PDO::PARAM_STR);
-$statement->bindValue(':landnaam', $_POST['landnaam'], PDO::PARAM_STR);
+$statement->bindValue(':achtbaan', $_POST['achtbaan'], PDO::PARAM_STR);
+$statement->bindValue(':pretpark', $_POST['pretpark'], PDO::PARAM_STR);
+$statement->bindValue(':land', $_POST['land'], PDO::PARAM_STR);
+$statement->bindValue(':snelheid', $_POST['snelheid'], PDO::PARAM_STR);
+$statement->bindValue(':hoogte', $_POST['hoogte'], PDO::PARAM_STR);
+$statement->bindValue(':opendate', $_POST['opendate'], PDO::PARAM_STR);
+$statement->bindValue(':cijfer', $_POST['cijfer'], PDO::PARAM_STR);
 
 // Vuur de query af op de database...
 $statement->execute();
